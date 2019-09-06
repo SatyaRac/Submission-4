@@ -1,4 +1,4 @@
-package com.example.submission4madegdk2019;
+package com.example.submission4madegdk2019.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.submission4madegdk2019.R;
 import com.example.submission4madegdk2019.fragment.FavoriteFragment;
 import com.example.submission4madegdk2019.fragment.MovieFragment;
 import com.example.submission4madegdk2019.fragment.TvFragment;

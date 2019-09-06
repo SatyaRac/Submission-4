@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list_movie"
+    android:id="@+id/list_tv"
     android:layout_margin="16dp">
 
     <RelativeLayout
-        android:id="@+id/rl_movie"
+        android:id="@+id/rl_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/iv_poster_movie"
+            android:id="@+id/iv_poster_tv"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_marginBottom="4dp"
@@ -21,66 +22,66 @@
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/tv_title_movie"
+            android:id="@+id/tv_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:layout_marginBottom="8dp"
-            android:layout_toEndOf="@+id/iv_poster_movie"
+            android:layout_toEndOf="@+id/iv_poster_tv"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_poster_movie"
+            android:layout_below="@id/iv_poster_tv"
             android:layout_marginStart="13dp"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginTop="-142dp"
             android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_toEndOf="@id/iv_poster_movie"
+            android:layout_toEndOf="@id/iv_poster_tv"
             android:ellipsize="end"
             android:maxLines="5"
-            android:text="@string/release_date"/>
+            android:text="@string/first_air_date"/>
 
         <TextView
-            android:id="@+id/tv_release_movie"
+            android:id="@+id/tv_release_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/tv_title_movie"
+            android:layout_alignBottom="@id/tv_title_tv"
             android:layout_marginStart="13dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-82dp"
-            android:layout_toEndOf="@id/iv_poster_movie"
+            android:layout_toEndOf="@id/iv_poster_tv"
             android:ellipsize="end"
             android:maxLines="5" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/tv_title_movie"
+            android:layout_alignBottom="@id/tv_title_tv"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-117dp"
             android:text="@string/description"
-            android:layout_toEndOf="@id/iv_poster_movie"
+            android:layout_toEndOf="@id/iv_poster_tv"
             android:ellipsize="end"
             android:maxLines="5" />
 
         <TextView
-            android:id="@+id/tv_description_movie"
+            android:id="@+id/tv_description_tv"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_alignBottom="@id/tv_title_movie"
+            android:layout_alignBottom="@id/tv_title_tv"
             android:layout_marginStart="13dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-160dp"
-            android:layout_toEndOf="@id/iv_poster_movie"
+            android:layout_toEndOf="@id/iv_poster_tv"
             android:ellipsize="end"
             android:maxLines="5" />
 
