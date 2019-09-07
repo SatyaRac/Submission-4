@@ -1,8 +1,12 @@
 package com.example.submission4madegdk2019.viewModel;
 
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.submission4madegdk2019.model.Movies;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -18,7 +22,7 @@ public class MovieViewModel extends ViewModel {
     private static final String KEY = "8bb4ed2c9577dbd754635bae6c2ca0d9";
     private MutableLiveData<ArrayList<Movies>> listMovies = new MutableLiveData<>();
 
-    public void setMovies(final String movies){
+    public void setMovies(){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Movies> listItem = new ArrayList<>();
         String urlApiMovie = "https://api.themoviedb.org/3/discover/movie?api_key=" + KEY + "&language=en-US";
@@ -37,14 +41,17 @@ public class MovieViewModel extends ViewModel {
                     }
                     listMovies.postValue(listItem);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.d("Exception", e.getMessage());
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                Log.d("onFailure", error.getMessage());
             }
-        })
+        });
+    }
+    public LiveData<ArrayList<Movies>> getMovies(){
+        return listMovies;
     }
 }

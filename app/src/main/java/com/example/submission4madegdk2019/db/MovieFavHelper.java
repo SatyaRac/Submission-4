@@ -4,12 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
-import static com.example.submission4madegdk2019.db.DbContract.MovieFavorite.TABLE_NAME;
+import static com.example.submission4madegdk2019.db.DbContract.ListFavorite.TABLE_MOVIE;
 
 public class MovieFavHelper {
-    private static final String DATABASE_TABLE = TABLE_NAME;
+    private static final String DATABASE_TABLE = TABLE_MOVIE;
     private static DbHelper dbHelper;
     private static MovieFavHelper INSTANCE;
     private static SQLiteDatabase sqLiteDatabase;

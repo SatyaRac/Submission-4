@@ -66,13 +66,13 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-117dp"
-            android:text="@string/description"
+            android:text="@string/overview"
             android:layout_toEndOf="@id/iv_poster_movie"
             android:ellipsize="end"
             android:maxLines="5" />
 
         <TextView
-            android:id="@+id/tv_description_movie"
+            android:id="@+id/tv_overview_movie"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_alignBottom="@id/tv_title_movie"
