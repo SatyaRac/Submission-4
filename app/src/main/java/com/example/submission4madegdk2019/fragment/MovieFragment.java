@@ -1,6 +1,7 @@
 package com.example.submission4madegdk2019.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.submission4madegdk2019.R;
+import com.example.submission4madegdk2019.activity.ListFavMovActivity;
 import com.example.submission4madegdk2019.adapter.MoviesAdapter;
 import com.example.submission4madegdk2019.model.Movies;
 import com.example.submission4madegdk2019.viewModel.MovieViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,9 @@ public class MovieFragment extends Fragment {
     private ProgressBar progressBar;
     private MovieViewModel movieViewModel;
     private MoviesAdapter moviesAdapter;
-    private List<Movies> movies;
+    private ArrayList<Movies> movies;
+    private FloatingActionButton fabMov;
+
 
 
     public MovieFragment() {
@@ -51,6 +56,7 @@ public class MovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvMovie = view.findViewById(R.id.menu_movie);
         progressBar = view.findViewById(R.id.progress_circular);
+        fabMov = view.findViewById(R.id.btn_favorite);
     }
 
     @Override
@@ -67,8 +73,18 @@ public class MovieFragment extends Fragment {
         rvMovie.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvMovie.setAdapter(moviesAdapter);
 
-        movieViewModel.setMovies();
+        fabMov.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListFavMovActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        movieViewModel.setMovies("SEND_MOVIE");
         showLoading(false);
+
+
     }
 
     private Observer<ArrayList<Movies>> getMovies = new Observer<ArrayList<Movies>>() {

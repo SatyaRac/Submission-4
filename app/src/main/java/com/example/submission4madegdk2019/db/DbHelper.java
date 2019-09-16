@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.example.submission4madegdk2019.db.DbContract.ListFavorite.TABLE_MOVIE;
-import static com.example.submission4madegdk2019.db.DbContract.ListFavorite.TABLE_TV_SHOW;
+import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TABLE_MOVIE;
+import static com.example.submission4madegdk2019.db.DbContract.TvListFavorite.TABLE_TV_SHOW;
 
 public class DbHelper  extends SQLiteOpenHelper {
 
@@ -20,12 +20,12 @@ public class DbHelper  extends SQLiteOpenHelper {
             " %s TEXT NOT NULL)",
 
             TABLE_MOVIE,
-            DbContract.ListFavorite._ID,
-            DbContract.ListFavorite.MOVIE_TITLE,
-            DbContract.ListFavorite.MOVIE_OVERVIEW,
-            DbContract.ListFavorite.MOVIE_RELEASE_DATE,
-            DbContract.ListFavorite.MOVIE_PHOTO,
-            DbContract.ListFavorite.MOVIE_VOTE_AVERAGE
+            DbContract.MovieListFavorite._ID,
+            DbContract.MovieListFavorite.MOVIE_TITLE,
+            DbContract.MovieListFavorite.MOVIE_OVERVIEW,
+            DbContract.MovieListFavorite.MOVIE_RELEASE_DATE,
+            DbContract.MovieListFavorite.MOVIE_PHOTO,
+            DbContract.MovieListFavorite.MOVIE_VOTE_AVERAGE
     );
 
     private static final String SQL_CREATE_TABLE_TV_SHOW_FAV = String.format("CREATE TABLE %s"
@@ -37,12 +37,12 @@ public class DbHelper  extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL)",
 
             TABLE_TV_SHOW,
-            DbContract.ListFavorite._ID,
-            DbContract.ListFavorite.TV_NAME,
-            DbContract.ListFavorite.TV_OVERVIEW,
-            DbContract.ListFavorite.TV_FIRST_AIR_DATE,
-            DbContract.ListFavorite.TV_PHOTO,
-            DbContract.ListFavorite.TV_VOTE_AVERAGE
+            DbContract.TvListFavorite._ID,
+            DbContract.TvListFavorite.TV_NAME,
+            DbContract.TvListFavorite.TV_OVERVIEW,
+            DbContract.TvListFavorite.TV_FIRST_AIR_DATE,
+            DbContract.TvListFavorite.TV_PHOTO,
+            DbContract.TvListFavorite.TV_VOTE_AVERAGE
     );
 
 

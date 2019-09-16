@@ -1,58 +1,52 @@
 package com.example.submission4madegdk2019.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.example.submission4madegdk2019.R;
-import com.example.submission4madegdk2019.fragment.FavoriteFragment;
+import com.example.submission4madegdk2019.adapter.PageAdapter;
 import com.example.submission4madegdk2019.fragment.MovieFragment;
 import com.example.submission4madegdk2019.fragment.TvFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private PageAdapter pageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadFragment(new MovieFragment());
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-    }
+        viewPager = findViewById(R.id.view_pager);
+        tabLayout = findViewById(R.id.tab_layout);
 
-    private boolean loadFragment(Fragment fragment){
-        if (fragment != null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.bottom_navigation, fragment)
-                    .commit();
-            return true;
+        pageAdapter= new PageAdapter(getSupportFragmentManager());
+        pageAdapter.addFragment(new MovieFragment(), getString(R.string.movie));
+        pageAdapter.addFragment(new TvFragment(), getString(R.string.tv_show));
+
+        viewPager.setAdapter(pageAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+   /* @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }*/
+
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == R.id.action_change_setings){
+            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(mIntent);
         }
-        return false;
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        Fragment fragment = null;
-        switch (menuItem.getItemId()){
-            case R.id.movies:
-                fragment = new MovieFragment();
-                break;
-
-            case R.id.tvshow:
-                fragment = new TvFragment();
-                break;
-
-            case R.id.favorite:
-                fragment = new FavoriteFragment();
-                break;
-        }
-        return loadFragment(fragment);
-    }
+        return super.onOptionsItemSelected(item);
+    }*/
 }

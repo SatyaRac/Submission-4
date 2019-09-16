@@ -22,7 +22,7 @@ public class MovieViewModel extends ViewModel {
     private static final String KEY = "8bb4ed2c9577dbd754635bae6c2ca0d9";
     private MutableLiveData<ArrayList<Movies>> listMovies = new MutableLiveData<>();
 
-    public void setMovies(){
+    public void setMovies(final String movies){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Movies> listItem = new ArrayList<>();
         String urlApiMovie = "https://api.themoviedb.org/3/discover/movie?api_key=" + KEY + "&language=en-US";
