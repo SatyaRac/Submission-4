@@ -24,7 +24,7 @@ import static com.example.submission4madegdk2019.activity.DetailMovieFavoriteAct
 
 public class ListFavMovActivity extends AppCompatActivity implements View.OnClickListener, LoadMovFavCallbac {
 
-    private static final String SEND_MOVIE = "send_movie";
+    private static final String SEND_STATE = "SEND_STATE";
     private MovieFavHelper movieFavHelper;
     private RecyclerView rvMovFav;
     private ProgressBar progressBar;
@@ -49,7 +49,7 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
         if (savedInstanceState == null) {
             new LoadMovAsync(movieFavHelper, this).execute();
         } else {
-            ArrayList<MovieFav> movieFavArrayList = savedInstanceState.getParcelableArrayList(SEND_MOVIE);
+            ArrayList<MovieFav> movieFavArrayList = savedInstanceState.getParcelableArrayList(SEND_STATE);
             if (movieFavArrayList != null) {
                 moviesFavAdapter.setMovieFavList(movieFavArrayList);
             }
@@ -60,6 +60,12 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(SEND_STATE, moviesFavAdapter.getAllMoviesFav());
     }
 
     @Override
@@ -102,9 +108,9 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
             weakCallback.get().preExecute();
         }
         @Override
-        protected void onPostExecute(ArrayList<MovieFav> movieFavs){
-            super.onPostExecute(movieFavs);
-            weakCallback.get().posExecute(movieFavs);
+        protected void onPostExecute(ArrayList<MovieFav> movieFav){
+            super.onPostExecute(movieFav);
+            weakCallback.get().posExecute(movieFav);
         }
     }
     @Override
@@ -113,12 +119,12 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
         movieFavHelper.close();
     }
     @Override
-    protected  void onActivityResult(int reqcode, int rescode, Intent intent){
-        super.onActivityResult(reqcode,rescode, intent);
-        if (intent != null){
+    protected  void onActivityResult(int reqcode, int rescode, Intent data){
+        super.onActivityResult(reqcode,rescode, data);
+        if (data != null){
             if (reqcode == REQUEST_UPDATE) {
                 if (rescode == DetailMovieFavoriteActivity.RESULT_DELETE){
-                    int pos = intent.getIntExtra(DetailMovieFavoriteActivity.SEND_MOVIE, 0);
+                    int pos = data.getIntExtra(DetailMovieFavoriteActivity.SEND_POSITION, 0);
                     moviesFavAdapter.removeItem(pos);
                     showSnackbarMessage(getString(R.string.notify_delete_mov));
                 }

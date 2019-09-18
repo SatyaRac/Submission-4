@@ -7,10 +7,10 @@ public class MovieFav implements Parcelable {
 
     private int id;
     private String title;
-    private String posterPath;
-    private String releaseDate;
+    private String poster_path;
+    private String release_date;
     private String overview;
-    private String voteAverage;
+    private String vote_average;
 
     public MovieFav() {
 
@@ -33,20 +33,20 @@ public class MovieFav implements Parcelable {
         this.title = title;
     }
 
-    public String getPosterPath() {
-        return posterPath;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
     public String getOverview() {
@@ -57,12 +57,12 @@ public class MovieFav implements Parcelable {
         this.overview = overview;
     }
 
-    public String getVoteAverage() {
-        return voteAverage;
+    public String getVote_average() {
+        return vote_average;
     }
 
-    public void setVoteAverage(String voteAverage) {
-        this.voteAverage = voteAverage;
+    public void setVote_average(String vote_average) {
+        this.vote_average = vote_average;
     }
 
 
@@ -75,19 +75,19 @@ public class MovieFav implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.title);
-        dest.writeString(this.posterPath);
-        dest.writeString(this.releaseDate);
+        dest.writeString(this.poster_path);
+        dest.writeString(this.release_date);
         dest.writeString(this.overview);
-        dest.writeValue(this.voteAverage);
+        dest.writeValue(this.vote_average);
     }
 
     public MovieFav(Parcel in) {
         this.id = in.readInt();
         this.title = in.readString();
-        this.posterPath = in.readString();
-        this.releaseDate = in.readString();
+        this.poster_path = in.readString();
+        this.release_date = in.readString();
         this.overview = in.readString();
-        this.voteAverage = (String) in.readValue(Double.class.getClassLoader());
+        this.vote_average = (String) in.readValue(Double.class.getClassLoader());
     }
 
     public static final Creator<MovieFav> CREATOR = new Creator<MovieFav>() {

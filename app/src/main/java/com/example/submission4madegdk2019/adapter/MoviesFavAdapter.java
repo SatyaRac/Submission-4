@@ -31,16 +31,6 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
         this.activity = activity;
     }
 
-    public void addItem(MovieFav movieFav){
-        this.movieFavList.add(movieFav);
-        notifyItemInserted(movieFavList.size() - 1);
-    }
-
-    public void removeItem(int i){
-        this.movieFavList.remove(i);
-        notifyItemRemoved(i);
-        notifyItemRangeChanged(i, movieFavList.size());
-    }
 
     public ArrayList<MovieFav> getAllMoviesFav(){
         return movieFavList;
@@ -61,11 +51,13 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
 
     @Override
     public void onBindViewHolder(@NonNull final MovieViewHolder holder, final int i) {
-        final MovieFav movieFav = movieFavList.get(i);
+
+        holder.bind(movieFavList.get(i));
+        /*final MovieFav movieFav = movieFavList.get(i);
 
         holder.tvTitleFavMov.setText(movieFavList.get(i).getTitle());
-        holder.tvReleaseFavMov.setText(movieFavList.get(i).getReleaseDate());
-        String url_image = movieFavList.get(i).getPosterPath();
+        holder.tvReleaseFavMov.setText(movieFavList.get(i).getRelease_date());
+        String url_image = movieFavList.get(i).getPoster_path();
         Glide.with(holder.itemView.getContext())
                 .load(url_image)
                 .placeholder(R.color.primaryColor)
@@ -75,13 +67,13 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
             @Override
             public void onClick(View v) {
                 Intent moveMovieFav = new Intent(activity, DetailMovieFavoriteActivity.class);
-                moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE, i);
+                moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_POSITION, i);
                 moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE_FAVORITE, movieFavList.get(i));
                 moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE_FAVORITE, movieFav);
                 ((Activity) activity.getApplicationContext()).startActivityForResult(moveMovieFav, DetailMovieFavoriteActivity.REQUEST_UPDATE);
             }
         });
-
+*/
     }
 
     @Override
@@ -89,7 +81,7 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
         return movieFavList.size();
     }
 
-    class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitleFavMov,tvReleaseFavMov;
         Button btnDetailMovFav;
         ImageView imgPhoto;
@@ -98,6 +90,31 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
             tvTitleFavMov = itemView.findViewById(R.id.tv_title_mov_fav);
             tvReleaseFavMov = itemView.findViewById(R.id.tv_release_mov_fav);
             btnDetailMovFav = itemView.findViewById(R.id.btn_detail_mov_fav);
+
+            btnDetailMovFav.setOnClickListener(this);
+        }
+
+        void bind(MovieFav movieFav){
+            String url_image = movieFav.getPoster_path();
+            tvTitleFavMov.setText(movieFav.getTitle());
+            tvReleaseFavMov.setText(movieFav.getRelease_date());
+
+            Glide.with(itemView.getContext())
+                    .load(url_image)
+                    .placeholder(R.color.primaryColor)
+                    .override(50,75)
+                    .into(imgPhoto);
+        }
+
+        @Override
+        public void onClick(View view){
+            int position = getAdapterPosition();
+            MovieFav movieFav = movieFavList.get(position);
+            Intent intent = new Intent(btnDetailMovFav.getContext(), DetailMovieFavoriteActivity.class);
+            intent.putExtra(DetailMovieFavoriteActivity.SEND_POSITION, position);
+            intent.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE_FAVORITE, movieFavList.get(position));
+            intent.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE_FAVORITE, movieFav);
+            ((Activity) btnDetailMovFav.getContext()).startActivityForResult(intent, DetailMovieFavoriteActivity.REQUEST_UPDATE);
         }
     }
 
@@ -109,4 +126,16 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
 
         notifyDataSetChanged();
     }
+
+    public void addItem(MovieFav movieFav){
+        this.movieFavList.add(movieFav);
+        notifyItemInserted(movieFavList.size() - 1);
+    }
+
+    public void removeItem(int i){
+        this.movieFavList.remove(i);
+        notifyItemRemoved(i);
+        notifyItemRangeChanged(i, movieFavList.size());
+    }
+
 }

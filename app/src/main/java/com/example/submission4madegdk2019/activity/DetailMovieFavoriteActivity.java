@@ -22,7 +22,7 @@ import com.example.submission4madegdk2019.model.MovieFav;
 public class DetailMovieFavoriteActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String SEND_MOVIE_FAVORITE = "send_movie_favorite";
-    public static final String SEND_MOVIE = "send_movie";
+    public static final String SEND_POSITION = "send_position";
 
     TextView tvTitleMovFav;
     TextView tvReleaseDateMovFav;
@@ -63,17 +63,18 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
         movieFavHelper = MovieFavHelper.getInstance(getApplicationContext());
         movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAVORITE);
         progressBar = findViewById(R.id.progress_Bar_fav);
+
         if (savedInstanceState != null) {
             progressBar.setVisibility(View.INVISIBLE);
             MovieFav movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAVORITE);
 
             tvTitleMovFav.setText(movieFav.getTitle());
-            tvReleaseDateMovFav.setText(movieFav.getReleaseDate());
-            tvVoteAverageMovFav.setText(movieFav.getVoteAverage());
+            tvReleaseDateMovFav.setText(movieFav.getRelease_date());
+            tvVoteAverageMovFav.setText(movieFav.getVote_average());
             tvOverviewMovFav.setText(movieFav.getOverview());
 
-            Glide.with(getApplicationContext())
-                    .load(movieFav.getPosterPath())
+            Glide.with(DetailMovieFavoriteActivity.this)
+                    .load(movieFav.getPoster_path())
                     .placeholder(R.color.primaryColor)
                     .override(50, 75)
                     .into(imageView);
@@ -95,12 +96,12 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                             MovieFav movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAVORITE);
 
                             tvTitleMovFav.setText(movieFav.getTitle());
-                            tvReleaseDateMovFav.setText(movieFav.getReleaseDate());
-                            tvVoteAverageMovFav.setText(movieFav.getVoteAverage());
+                            tvReleaseDateMovFav.setText(movieFav.getRelease_date());
+                            tvVoteAverageMovFav.setText(movieFav.getVote_average());
                             tvOverviewMovFav.setText(movieFav.getOverview());
 
                             Glide.with(DetailMovieFavoriteActivity.this)
-                                    .load(movieFav.getPosterPath())
+                                    .load(movieFav.getPoster_path())
                                     .placeholder(R.color.primaryColor)
                                     .override(50, 75)
                                     .into(imageView);
@@ -135,7 +136,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                             long result = movieFavHelper.deleteMovie(movieFav.getId());
                             if (result > 0) {
                                 Intent intent = new Intent();
-                                intent.putExtra(SEND_MOVIE, position);
+                                intent.putExtra(SEND_POSITION, position);
                                 setResult(RESULT_DELETE, intent);
                                 finish();
                             } else {

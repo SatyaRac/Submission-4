@@ -21,11 +21,11 @@ public class DbHelper  extends SQLiteOpenHelper {
 
             TABLE_MOVIE,
             DbContract.MovieListFavorite._ID,
-            DbContract.MovieListFavorite.MOVIE_TITLE,
-            DbContract.MovieListFavorite.MOVIE_OVERVIEW,
-            DbContract.MovieListFavorite.MOVIE_RELEASE_DATE,
-            DbContract.MovieListFavorite.MOVIE_PHOTO,
-            DbContract.MovieListFavorite.MOVIE_VOTE_AVERAGE
+            DbContract.MovieListFavorite.TITLE,
+            DbContract.MovieListFavorite.OVERVIEW,
+            DbContract.MovieListFavorite.RELEASE_DATE,
+            DbContract.MovieListFavorite.VOTE_AVERAGE,
+            DbContract.MovieListFavorite.POSTER_PATH
     );
 
     private static final String SQL_CREATE_TABLE_TV_SHOW_FAV = String.format("CREATE TABLE %s"
@@ -41,8 +41,8 @@ public class DbHelper  extends SQLiteOpenHelper {
             DbContract.TvListFavorite.TV_NAME,
             DbContract.TvListFavorite.TV_OVERVIEW,
             DbContract.TvListFavorite.TV_FIRST_AIR_DATE,
-            DbContract.TvListFavorite.TV_PHOTO,
-            DbContract.TvListFavorite.TV_VOTE_AVERAGE
+            DbContract.TvListFavorite.TV_VOTE_AVERAGE,
+            DbContract.TvListFavorite.TV_PHOTO
     );
 
 

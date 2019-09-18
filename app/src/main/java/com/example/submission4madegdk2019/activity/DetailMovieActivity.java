@@ -28,18 +28,19 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     public static final String SEND_MOVIE = "send_movie";
 
-    public ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     public TextView tv_title, tv_release, tv_vote_average, tv_overview, tv_url_image;
     Button btnSaveMov;
 
     ImageView imageMov;
 
+
     public static final String SEND_MOVIE_FAV = "send_movie_fav";
-    public static final String SEND_MOVIE_POSITION = "send_movie_position";
+    public static final String SEND_POSITION = "send_position";
 
     private MovieFav movieFav;
-    private int postion;
+    private int position;
 
     private MovieFavHelper movieFavHelper;
     private boolean isEdit = false;
@@ -65,7 +66,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         movieFavHelper.open();
         movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAV);
         if (movieFav != null){
-            postion = getIntent().getIntExtra(SEND_MOVIE_POSITION,0);
+            position = getIntent().getIntExtra(SEND_POSITION,0);
             isEdit  = true;
             btnSaveMov.setVisibility(View.GONE);
         } else {
@@ -75,12 +76,12 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             progressBar.setVisibility(View.INVISIBLE);
             Movies movies = getIntent().getParcelableExtra(SEND_MOVIE);
 
-            String url_picMov = "https://image.tmdb.org/t/p/w500" + movies.getPosterPath();
-            String vote_average = Double.toString(movies.getVoteAverage());
+            String url_picMov = "https://image.tmdb.org/t/p/w500" + movies.getPoster_path();
+            String vote_average = Double.toString(movies.getVote_average());
 
             tv_vote_average.setText(vote_average);
             tv_title.setText(movies.getTitle());
-            tv_release.setText(movies.getReleaseDate());
+            tv_release.setText(movies.getRelease_date());
             tv_overview.setText(movies.getOverview());
             tv_url_image.setText(url_picMov);
 
@@ -109,19 +110,19 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void run() {
                     try{
-                        Thread.sleep(5000);
+                        Thread.sleep(3000);
                     } catch (Exception e){
                     }
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
                             Movies movies = getIntent().getParcelableExtra(SEND_MOVIE);
-                            String url_picMov = "https://image.tmdb.org/t/p/w500" + movies.getPosterPath();
-                            String vote_average = Double.toString(movies.getVoteAverage());
+                            String url_picMov = "https://image.tmdb.org/t/p/w500" + movies.getPoster_path();
+                            String vote_average = Double.toString(movies.getVote_average());
 
                             tv_vote_average.setText(vote_average);
                             tv_title.setText(movies.getTitle());
-                            tv_release.setText(movies.getReleaseDate());
+                            tv_release.setText(movies.getRelease_date());
                             tv_overview.setText(movies.getOverview());
                             tv_url_image.setText(url_picMov);
 
@@ -147,20 +148,20 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if (view.getId() == R.id.btn_favorite) {
             String titles       = tv_title.getText().toString().trim();
-            String overviews    = tv_overview.getText().toString().trim();
+            String overview    = tv_overview.getText().toString().trim();
             String release_date = tv_release.getText().toString().trim();
             String vote_average = tv_vote_average.getText().toString().trim();
 
             String url_poster = tv_url_image.getText().toString().trim();
             movieFav.setTitle(titles);
-            movieFav.setOverview(overviews);
-            movieFav.setReleaseDate(release_date);
-            movieFav.setVoteAverage(vote_average);
-            movieFav.setPosterPath(url_poster);
+            movieFav.setOverview(overview);
+            movieFav.setRelease_date(release_date);
+            movieFav.setVote_average(vote_average);
+            movieFav.setPoster_path(url_poster);
 
             Intent intent = new Intent();
             intent.putExtra(SEND_MOVIE_FAV, movieFav);
-            intent.putExtra(SEND_MOVIE_POSITION, postion);
+            intent.putExtra(SEND_POSITION, position);
 
             if (!isEdit) {
 

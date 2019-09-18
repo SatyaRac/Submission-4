@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewAdapter> {
 
-    private List<Movies> mData = new ArrayList<>();
+    private ArrayList<Movies> mData = new ArrayList<>();
     private Activity activity;
     private Context context;
 
@@ -52,9 +52,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewA
 
 
         holder.tvTitle.setText(mData.get(i).getTitle());
-        holder.tvReleaseDate.setText(mData.get(i).getReleaseDate());
+        holder.tvReleaseDate.setText(mData.get(i).getRelease_date());
         holder.tvOverview.setText(mData.get(i).getOverview());
-        String urlPosterMov = "https://image.tmdb.org/t/p/w500/" + mData.get(i).getPosterPath();
+        String urlPosterMov = "https://image.tmdb.org/t/p/w500/" + mData.get(i).getPoster_path();
         Glide.with(holder.itemView.getContext())
                 .load(urlPosterMov)
                 .apply(new RequestOptions().override(50,75))

@@ -6,11 +6,11 @@ public class DbContract {
     static final class MovieListFavorite implements BaseColumns {
         static final String TABLE_MOVIE = "movie_favorites";
 
-        static final String MOVIE_TITLE = "movie_title";
-        static final String MOVIE_OVERVIEW = "movie_overview";
-        static final String MOVIE_RELEASE_DATE = "movie_release_date";
-        static final String MOVIE_PHOTO = "movie_photo";
-        static final String MOVIE_VOTE_AVERAGE = "movie_vote_average";
+        static final String TITLE = "movie_title";
+        static final String OVERVIEW = "movie_overview";
+        static final String RELEASE_DATE = "movie_release_date";
+        static final String POSTER_PATH = "movie_photo";
+        static final String VOTE_AVERAGE = "movie_vote_average";
     }
     static final class TvListFavorite implements BaseColumns{
         static final String TABLE_TV_SHOW = "tv_show_favorites";
