@@ -107,8 +107,8 @@ public class TvShow implements Parcelable {
             String name = object.getString("name");
             String poster_path = object.getString("poster_path");
             String first_air_date = object.getString("first_air_date");
-            String overview = object.getString("tv_overview");
-            Double vote_average = object.getDouble("tv_vote_average");
+            String overview = object.getString("overview");
+            Double vote_average = object.getDouble("vote_average");
 
             this.name = name;
             this.posterPath = poster_path;

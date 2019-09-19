@@ -17,7 +17,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.submission4madegdk2019.R;
+import com.example.submission4madegdk2019.activity.ListFavTvActivity;
+import com.example.submission4madegdk2019.adapter.TvAdapter;
 import com.example.submission4madegdk2019.model.TvShow;
+import com.example.submission4madegdk2019.viewModel.TvViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -75,7 +78,7 @@ public class TvFragment extends Fragment {
             }
         });
 
-        tvViewModelViewModel.setMovies("SEND_TV");
+        tvViewModel.setTv("SEND_TV");
         showLoading(false);
 
     }

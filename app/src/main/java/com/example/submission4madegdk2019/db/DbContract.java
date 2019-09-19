@@ -18,7 +18,7 @@ public class DbContract {
         static final String TV_NAME = "tv_title";
         static final String TV_OVERVIEW = "tv_overview";
         static final String TV_FIRST_AIR_DATE = "tv_first_air_date";
-        static final String TV_PHOTO = "tv_photo";
+        static final String TV_POSTER_PATH = "tv_photo";
         static final String TV_VOTE_AVERAGE = "tv_vote_average";
 
 

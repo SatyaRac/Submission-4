@@ -146,7 +146,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_favorite) {
+        if (view.getId() == R.id.btn_love) {
             String titles       = tv_title.getText().toString().trim();
             String overview    = tv_overview.getText().toString().trim();
             String release_date = tv_release.getText().toString().trim();

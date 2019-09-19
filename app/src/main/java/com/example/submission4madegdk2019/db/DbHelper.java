@@ -42,7 +42,7 @@ public class DbHelper  extends SQLiteOpenHelper {
             DbContract.TvListFavorite.TV_OVERVIEW,
             DbContract.TvListFavorite.TV_FIRST_AIR_DATE,
             DbContract.TvListFavorite.TV_VOTE_AVERAGE,
-            DbContract.TvListFavorite.TV_PHOTO
+            DbContract.TvListFavorite.TV_POSTER_PATH
     );
 
 

@@ -16,21 +16,21 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.submission4madegdk2019.R;
-import com.example.submission4madegdk2019.db.MovieFavHelper;
-import com.example.submission4madegdk2019.model.MovieFav;
+import com.example.submission4madegdk2019.db.TvFavHelper;
+import com.example.submission4madegdk2019.model.TvFav;
 
-public class DetailMovieFavoriteActivity extends AppCompatActivity implements View.OnClickListener{
+public class DetailTvFavoriteActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String SEND_MOVIE_FAVORITE = "send_movie_favorite";
+    public static final String SEND_TV_FAVORITE = "send_tv_favorite";
     public static final String SEND_POSITION = "send_position";
 
-    TextView tvTitleMovFav;
-    TextView tvReleaseDateMovFav;
-    TextView tvVoteAverageMovFav;
-    TextView tvOverviewMovFav;
-    TextView tvUrlMovFav;
+    TextView tvNameTvFav;
+    TextView tvFirstAirDAteTvFav;
+    TextView tvVoteAverageTvFav;
+    TextView tvOverviewTvFav;
+    TextView tvUrlTvFav;
     ImageView imageView;
-    Button btnDeleteMovFav;
+    Button btnDeleteTvFav;
 
     private ProgressBar progressBar;
 
@@ -40,47 +40,44 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
     private final int ALERT_DIALOG_CLOSE = 10;
     private final int ALERT_DIALOG_DELETE = 20;
 
-    private MovieFav movieFav;
+    private TvFav tvFav;
     private int position;
 
-    private MovieFavHelper movieFavHelper;
-
+    private TvFavHelper tvFavHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_movie_favorite);
+        setContentView(R.layout.activity_detail_tv_favorite);
 
-        tvTitleMovFav = findViewById(R.id.tv_title_mov_fav);
-        tvReleaseDateMovFav = findViewById(R.id.tv_release_mov_fav);
-        tvVoteAverageMovFav = findViewById(R.id.tv_vote_average_mov_fav);
-        tvOverviewMovFav = findViewById(R.id.tv_overview_mov_fav);
-        tvUrlMovFav = findViewById(R.id.tv_url_image_mov_fav);
-        imageView = findViewById(R.id.iv_poster_mov_fav);
+        tvNameTvFav = findViewById(R.id.tv_name_tv_fav);
+        tvFirstAirDAteTvFav = findViewById(R.id.tv_first_air_date_tv_fav);
+        tvOverviewTvFav = findViewById(R.id.tv_overview_tv_fav);
+        tvVoteAverageTvFav = findViewById(R.id.tv_vote_average_tv_fav);
+        tvUrlTvFav = findViewById(R.id.tv_url_image_tv_fav);
 
-        btnDeleteMovFav = findViewById(R.id.btn_delete);
-        btnDeleteMovFav.setOnClickListener(this);
+        btnDeleteTvFav = findViewById(R.id.btn_delete);
+        btnDeleteTvFav.setOnClickListener(this);
 
-        movieFavHelper = MovieFavHelper.getInstance(getApplicationContext());
-        movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAVORITE);
-        progressBar = findViewById(R.id.progress_Bar_fav);
+        tvFavHelper = TvFavHelper.getInstance(getApplicationContext());
+        tvFav = getIntent().getParcelableExtra(SEND_TV_FAVORITE);
+        progressBar = findViewById(R.id.progress_Bar);
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null){
             progressBar.setVisibility(View.INVISIBLE);
-            MovieFav movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAVORITE);
+            TvFav tvFav = getIntent().getParcelableExtra(SEND_TV_FAVORITE);
 
-            tvTitleMovFav.setText(movieFav.getTitle());
-            tvReleaseDateMovFav.setText(movieFav.getRelease_date());
-            tvVoteAverageMovFav.setText(movieFav.getVote_average());
-            tvOverviewMovFav.setText(movieFav.getOverview());
+            tvNameTvFav.setText(tvFav.getTv_name());
+            tvFirstAirDAteTvFav.setText(tvFav.getTv_first_air_date());
+            tvVoteAverageTvFav.setText(tvFav.getTv_vote_average());
+            tvOverviewTvFav.setText(tvFav.getTv_overview());
 
-            Glide.with(DetailMovieFavoriteActivity.this)
-                    .load(movieFav.getPoster_path())
+            Glide.with(DetailTvFavoriteActivity.this)
+                    .load(tvFav.getTv_poster_path())
                     .placeholder(R.color.primaryColor)
-                    .override(50, 75)
+                    .override(50,75)
                     .into(imageView);
-
-        }else {
+        } else {
             progressBar.setVisibility(View.VISIBLE);
             final Handler handler = new Handler();
 
@@ -89,34 +86,29 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                 public void run() {
                     try {
                         Thread.sleep(5000);
-                    } catch (Exception e) {
-                    }
-                    handler.post(new Runnable() {
+                    } catch (Exception e){
+
+                    }handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            MovieFav movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAVORITE);
+                            TvFav tvFav = getIntent().getParcelableExtra(SEND_TV_FAVORITE);
 
-                            tvTitleMovFav.setText(movieFav.getTitle());
-                            tvReleaseDateMovFav.setText(movieFav.getRelease_date());
-                            tvVoteAverageMovFav.setText(movieFav.getVote_average());
-                            tvOverviewMovFav.setText(movieFav.getOverview());
+                            tvNameTvFav.setText(tvFav.getTv_name());
+                            tvFirstAirDAteTvFav.setText(tvFav.getTv_first_air_date());
+                            tvVoteAverageTvFav.setText(tvFav.getTv_vote_average());
+                            tvOverviewTvFav.setText(tvFav.getTv_overview());
 
-                            Glide.with(DetailMovieFavoriteActivity.this)
-                                    .load(movieFav.getPoster_path())
+                            Glide.with(DetailTvFavoriteActivity.this)
+                                    .load(tvFav.getTv_poster_path())
                                     .placeholder(R.color.primaryColor)
-                                    .override(50, 75)
+                                    .override(50,75)
                                     .into(imageView);
-                            progressBar.setVisibility(View.INVISIBLE);
                         }
-
                     });
                 }
             }).start();
         }
-
-
     }
-
 
     private void showAlertDialog(int type) {
         final boolean isDialogClose = type == ALERT_DIALOG_CLOSE;
@@ -126,7 +118,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
 
         if (!isDialogClose) {
             dialogMessage = getString(R.string.notify_ques_delete);
-            dialogTitle   = getString(R.string.notify_delete_mov);
+            dialogTitle   = getString(R.string.notify_delete_tv);
 
             alertDialogBuilder.setTitle(dialogTitle);
             alertDialogBuilder
@@ -134,14 +126,14 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                     .setCancelable(false)
                     .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            long result = movieFavHelper.deleteMovie(movieFav.getId());
+                            long result = tvFavHelper.deleteTv(tvFav.getId());
                             if (result > 0) {
                                 Intent intent = new Intent();
                                 intent.putExtra(SEND_POSITION, position);
                                 setResult(RESULT_DELETE, intent);
                                 finish();
                             } else {
-                                Toast.makeText(DetailMovieFavoriteActivity.this, getString(R.string.notify_failed_delete_data), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DetailTvFavoriteActivity.this, getString(R.string.notify_failed_delete_data), Toast.LENGTH_SHORT).show();
                             }
                         }
                     })
@@ -158,19 +150,17 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
     }
 
     @Override
-    protected void onDestroy(){
-        super.onDestroy();
-    }
-
-
-
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_delete) {
             showAlertDialog(ALERT_DIALOG_DELETE);
         }
-
     }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -179,4 +169,5 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
 
 
 }
+
 

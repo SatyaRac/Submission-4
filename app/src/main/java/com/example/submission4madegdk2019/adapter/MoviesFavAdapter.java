@@ -87,15 +87,17 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
         ImageView imgPhoto;
         MovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitleFavMov = itemView.findViewById(R.id.tv_title_mov_fav);
-            tvReleaseFavMov = itemView.findViewById(R.id.tv_release_mov_fav);
+            tvTitleFavMov = itemView.findViewById(R.id.tv_title_mov);
+            tvReleaseFavMov = itemView.findViewById(R.id.tv_release_mov);
             btnDetailMovFav = itemView.findViewById(R.id.btn_detail_mov_fav);
+            imgPhoto = itemView.findViewById(R.id.iv_poster_movie);
 
             btnDetailMovFav.setOnClickListener(this);
         }
 
         void bind(MovieFav movieFav){
             String url_image = movieFav.getPoster_path();
+
             tvTitleFavMov.setText(movieFav.getTitle());
             tvReleaseFavMov.setText(movieFav.getRelease_date());
 

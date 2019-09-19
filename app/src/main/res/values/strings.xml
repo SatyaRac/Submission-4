@@ -35,8 +35,11 @@
     <string name="delete">Delete</string>
     <string name="notify_ques_delete">Are you sure to delete this favorite?</string>
     <string name="notify_failed_delete_data">Failed delete data</string>
-    <string name="notify_delete_mov">Delete Movie</string>
+    <string name="notify_delete_mov">Delete Movie?</string>
+    <string name="notify_delete_tv">Delete Tv Shows?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+
 
 </resources>
