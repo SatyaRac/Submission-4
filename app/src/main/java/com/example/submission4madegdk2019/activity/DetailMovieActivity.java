@@ -23,6 +23,7 @@ import com.example.submission4madegdk2019.R;
 import com.example.submission4madegdk2019.db.MovieFavHelper;
 import com.example.submission4madegdk2019.model.MovieFav;
 import com.example.submission4madegdk2019.model.Movies;
+import com.example.submission4madegdk2019.viewModel.MovieViewModel;
 
 public class DetailMovieActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,18 +39,19 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     public static final String SEND_MOVIE_FAV = "send_movie_fav";
     public static final String SEND_POSITION = "send_position";
-
+    private MovieViewModel movieViewModel;
     private MovieFav movieFav;
     private int position;
 
     private MovieFavHelper movieFavHelper;
     private boolean isEdit = false;
     public static final int RESULT_ADD = 101;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
+
+
 
         tv_title = findViewById(R.id.tv_title_mov);
         tv_release = findViewById(R.id.tv_release_mov);
@@ -147,12 +149,15 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     public void onClick(View view) {
         if (view.getId() == R.id.btn_love) {
+
+
             String titles       = tv_title.getText().toString().trim();
             String overview    = tv_overview.getText().toString().trim();
             String release_date = tv_release.getText().toString().trim();
             String vote_average = tv_vote_average.getText().toString().trim();
 
             String url_poster = tv_url_image.getText().toString().trim();
+
             movieFav.setTitle(titles);
             movieFav.setOverview(overview);
             movieFav.setRelease_date(release_date);
@@ -170,10 +175,17 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
                 if (result > 0) {
                     movieFav.setId((int) result);
                     setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailMovieActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(DetailMovieActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+            if (isEdit){
+                long dat = movieFavHelper.isExist(movieFav);
+                if (dat > 0 ){
+                    Toast.makeText(DetailMovieActivity.this, "Sudah di tambahkan", Toast.LENGTH_SHORT).show();
                 }
             }
 

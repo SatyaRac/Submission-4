@@ -79,6 +79,7 @@ public class TvFavHelper {
 
     public long insertTv(TvFav tvFav) {
         ContentValues args = new ContentValues();
+        args.put(_ID, tvFav.getId());
         args.put(TV_NAME, tvFav.getTv_name());
         args.put(TV_OVERVIEW, tvFav.getTv_overview());
         args.put(TV_FIRST_AIR_DATE, tvFav.getTv_first_air_date());

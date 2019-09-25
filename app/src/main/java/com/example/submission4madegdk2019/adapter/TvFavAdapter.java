@@ -64,10 +64,10 @@ public class TvFavAdapter extends RecyclerView.Adapter<TvFavAdapter.TvViewHolder
         TvViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvNameFavTv = itemView.findViewById(R.id.tv_name_tv_fav);
-            tvFirstAirDateFavTv = itemView.findViewById(R.id.tv_first_air_date_tv_fav);
+            tvNameFavTv = itemView.findViewById(R.id.tv_name_tv);
+            tvFirstAirDateFavTv = itemView.findViewById(R.id.tv_first_air_date_tv);
             btnDetailTvFav = itemView.findViewById(R.id.btn_detail_tv_fav);
-
+            imgPhoto = itemView.findViewById(R.id.iv_poster_tv);
             btnDetailTvFav.setOnClickListener(this);
         }
         void bind(TvFav tvFav){

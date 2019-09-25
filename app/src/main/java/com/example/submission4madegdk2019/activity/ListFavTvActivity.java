@@ -1,6 +1,7 @@
 package com.example.submission4madegdk2019.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -11,7 +12,6 @@ import android.widget.ProgressBar;
 
 import com.example.submission4madegdk2019.LoadTvFavCallbac;
 import com.example.submission4madegdk2019.R;
-import com.example.submission4madegdk2019.adapter.TvAdapter;
 import com.example.submission4madegdk2019.adapter.TvFavAdapter;
 import com.example.submission4madegdk2019.db.TvFavHelper;
 import com.example.submission4madegdk2019.model.TvFav;
@@ -25,10 +25,10 @@ import static com.example.submission4madegdk2019.activity.DetailTvFavoriteActivi
 public class ListFavTvActivity extends AppCompatActivity implements View.OnClickListener, LoadTvFavCallbac {
 
     private static final String SEND_STATE = "send_state";
-    TvFavHelper tvFavHelper;
-    RecyclerView rvTvFav;
-    ProgressBar progressBar;
-    TvFavAdapter tvFavAdapter;
+    private TvFavHelper tvFavHelper;
+    private RecyclerView rvTvFav;
+    private ProgressBar progressBar;
+    private TvFavAdapter tvFavAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,11 @@ public class ListFavTvActivity extends AppCompatActivity implements View.OnClick
         tvFavHelper = TvFavHelper.getInstance(getApplicationContext());
         tvFavHelper.open();
 
+        tvFavAdapter = new TvFavAdapter(this);
+
         rvTvFav = findViewById(R.id.rv_tv_favorite);
+        rvTvFav.setLayoutManager(new LinearLayoutManager(this));
+        rvTvFav.setHasFixedSize(true);
         progressBar = findViewById(R.id.progress_Bar);
         rvTvFav.setAdapter(tvFavAdapter);
 
@@ -76,11 +80,10 @@ public class ListFavTvActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void posExecute(ArrayList<TvFav> listsTvFav) {
         progressBar.setVisibility(View.INVISIBLE);
-        tvFavAdapter.setTvFavList(listsTvFav);
+       tvFavAdapter.setTvFavList(listsTvFav);
     }
 
-    private static class LoadTvAsync
-            extends AsyncTask<Void, Void, ArrayList<TvFav>> {
+    private static class LoadTvAsync extends AsyncTask<Void, Void, ArrayList<TvFav>> {
 
         private final WeakReference<TvFavHelper> weakReference;
         private final WeakReference<LoadTvFavCallbac> weakCallback;

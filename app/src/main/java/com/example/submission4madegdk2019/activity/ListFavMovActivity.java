@@ -86,8 +86,7 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    private static class LoadMovAsync
-            extends AsyncTask<Void, Void, ArrayList<MovieFav>> {
+    private static class LoadMovAsync extends AsyncTask<Void, Void, ArrayList<MovieFav>> {
 
         private final WeakReference<MovieFavHelper> weakReference;
         private final WeakReference<LoadMovFavCallbac> weakCallback;

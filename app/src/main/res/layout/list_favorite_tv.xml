@@ -43,10 +43,10 @@
             android:layout_toEndOf="@id/iv_poster_tv"
             android:ellipsize="end"
             android:maxLines="5"
-            android:text="@string/release_date"/>
+            android:text="@string/first_air_date"/>
 
         <TextView
-            android:id="@+id/tv_release_tv"
+            android:id="@+id/tv_first_air_date_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/tv_name_tv"

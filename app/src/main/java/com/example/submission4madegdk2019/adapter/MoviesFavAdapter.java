@@ -53,27 +53,6 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
     public void onBindViewHolder(@NonNull final MovieViewHolder holder, final int i) {
 
         holder.bind(movieFavList.get(i));
-        /*final MovieFav movieFav = movieFavList.get(i);
-
-        holder.tvTitleFavMov.setText(movieFavList.get(i).getTitle());
-        holder.tvReleaseFavMov.setText(movieFavList.get(i).getRelease_date());
-        String url_image = movieFavList.get(i).getPoster_path();
-        Glide.with(holder.itemView.getContext())
-                .load(url_image)
-                .placeholder(R.color.primaryColor)
-                .override(50,75)
-                .into(holder.imgPhoto);
-        holder.btnDetailMovFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent moveMovieFav = new Intent(activity, DetailMovieFavoriteActivity.class);
-                moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_POSITION, i);
-                moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE_FAVORITE, movieFavList.get(i));
-                moveMovieFav.putExtra(DetailMovieFavoriteActivity.SEND_MOVIE_FAVORITE, movieFav);
-                ((Activity) activity.getApplicationContext()).startActivityForResult(moveMovieFav, DetailMovieFavoriteActivity.REQUEST_UPDATE);
-            }
-        });
-*/
     }
 
     @Override

@@ -13,6 +13,7 @@ public class DbHelper  extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_TABLE_MOVIE_FAV = String.format("CREATE TABLE %s"
             + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+          /*  " %s INTEGER NOT NULL," +*/
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL," +
@@ -21,6 +22,7 @@ public class DbHelper  extends SQLiteOpenHelper {
 
             TABLE_MOVIE,
             DbContract.MovieListFavorite._ID,
+            /*DbContract.MovieListFavorite.ID_MOVIE,*/
             DbContract.MovieListFavorite.TITLE,
             DbContract.MovieListFavorite.OVERVIEW,
             DbContract.MovieListFavorite.RELEASE_DATE,
@@ -30,6 +32,7 @@ public class DbHelper  extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_TABLE_TV_SHOW_FAV = String.format("CREATE TABLE %s"
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    /*" %s INTEGER NOT NULL," +*/
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
@@ -38,6 +41,7 @@ public class DbHelper  extends SQLiteOpenHelper {
 
             TABLE_TV_SHOW,
             DbContract.TvListFavorite._ID,
+            /*DbContract.TvListFavorite.ID_TV,*/
             DbContract.TvListFavorite.TV_NAME,
             DbContract.TvListFavorite.TV_OVERVIEW,
             DbContract.TvListFavorite.TV_FIRST_AIR_DATE,

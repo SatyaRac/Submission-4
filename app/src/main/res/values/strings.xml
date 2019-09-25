@@ -9,37 +9,19 @@
 
     <string name="detail">Detail</string>
     <string name="language">Change Language</string>
-    <string name="favorite">Favorite</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="vote_average">Vote Average</string>
     <string name="add_to_favorite">Add to Favorite</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
 
     <string name="success_add">Success add to favorite</string>
     <string name="failed_add">Failed add to favorite</string>
     <string name="delete">Delete</string>
     <string name="notify_ques_delete">Are you sure to delete this favorite?</string>
     <string name="notify_failed_delete_data">Failed delete data</string>
-    <string name="notify_delete_mov">Delete Movie?</string>
-    <string name="notify_delete_tv">Delete Tv Shows?</string>
+    <string name="notify_delete_mov">Delete Movie</string>
+    <string name="notify_delete_tv">Delete Tv Shows</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-
 
 
 </resources>

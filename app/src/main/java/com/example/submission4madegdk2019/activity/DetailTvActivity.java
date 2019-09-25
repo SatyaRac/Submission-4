@@ -55,7 +55,7 @@ public class DetailTvActivity extends AppCompatActivity implements View.OnClickL
         tvFirstAirDate = findViewById(R.id.tv_first_air_date_tv);
         progressBar = findViewById(R.id.progress_Bar);
         imageTv = findViewById(R.id.iv_poster_tv);
-        btnSaveTv = findViewById(R.id.btn_favoriteTv);
+        btnSaveTv = findViewById(R.id.btn_love);
 
         btnSaveTv.setOnClickListener(this);
 
@@ -143,7 +143,7 @@ public class DetailTvActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_favorite){
+        if (view.getId() == R.id.btn_love){
             String tv_name       = tvName.getText().toString().trim();
             String tv_overview    = tvOverview.getText().toString().trim();
             String tv_first_air_date = tvFirstAirDate.getText().toString().trim();
@@ -169,8 +169,6 @@ public class DetailTvActivity extends AppCompatActivity implements View.OnClickL
                     setResult(RESULT_ADD, intent);
                     Toast.makeText(DetailTvActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
                     finish();
-                } else {
-                    Toast.makeText(DetailTvActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
                 }
             }
         }

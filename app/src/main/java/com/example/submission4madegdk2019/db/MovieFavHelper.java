@@ -12,6 +12,7 @@ import com.example.submission4madegdk2019.model.MovieFav;
 import java.util.ArrayList;
 
 import static android.provider.BaseColumns._ID;
+import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.ID_MOVIE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.OVERVIEW;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.POSTER_PATH;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.RELEASE_DATE;
@@ -83,17 +84,31 @@ public class MovieFavHelper {
 
     public long insertMovie(MovieFav movieFavorite) {
         ContentValues args = new ContentValues();
+        args.put(_ID, movieFavorite.getId());
         args.put(TITLE, movieFavorite.getTitle());
         args.put(OVERVIEW, movieFavorite.getOverview());
         args.put(RELEASE_DATE, movieFavorite.getRelease_date());
         args.put(VOTE_AVERAGE, movieFavorite.getVote_average());
         args.put(POSTER_PATH, movieFavorite.getPoster_path());
         return sqLiteDatabase.insert(DATABASE_TABLE, null, args);
+
+    }
+    public int isExist(MovieFav id){
+
+        String query = " SELECT * FROM " + DATABASE_TABLE + " WHERE " + _ID + "=" + id;
+
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 
     public int deleteMovie(int id) {
         return sqLiteDatabase.delete(TABLE_MOVIE, _ID + " = '" + id + "'", null);
     }
+
+
 
 
 }

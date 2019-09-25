@@ -56,6 +56,8 @@ public class DetailTvFavoriteActivity extends AppCompatActivity implements View.
         tvVoteAverageTvFav = findViewById(R.id.tv_vote_average_tv_fav);
         tvUrlTvFav = findViewById(R.id.tv_url_image_tv_fav);
 
+        imageView = findViewById(R.id.iv_poster_tv_fav);
+
         btnDeleteTvFav = findViewById(R.id.btn_delete);
         btnDeleteTvFav.setOnClickListener(this);
 
@@ -103,6 +105,7 @@ public class DetailTvFavoriteActivity extends AppCompatActivity implements View.
                                     .placeholder(R.color.primaryColor)
                                     .override(50,75)
                                     .into(imageView);
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
                 }

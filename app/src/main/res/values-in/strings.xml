@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Submission 4 MADE GDK 2019</string>
+
+    <string name="movie">Film</string>
+    <string name="tv_show">Serial Tv</string>
+    <string name="overview">Uraian</string>
+    <string name="release_date">Tanggal Rilis</string>
+    <string name="first_air_date">Penanyangan Perdana</string>
+
+    <string name="detail">Detil</string>
+    <string name="language">Ganti Bahasa</string>
+
+    <string name="vote_average">Nilai Pemilih</string>
+    <string name="add_to_favorite">Tambah ke Favorit</string>
+
+
+    <string name="success_add">Berhasil Menambah ke Favorit</string>
+    <string name="failed_add">Gagal menambah ke Favorit</string>
+    <string name="delete">Hapus</string>
+    <string name="notify_ques_delete">Apakah kamu yakin menghapus ini?</string>
+    <string name="notify_failed_delete_data">Gagal menghapus data</string>
+    <string name="notify_delete_mov">Film Terhapus</string>
+    <string name="notify_delete_tv">Serial Tv Terhapus</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+
+</resources>

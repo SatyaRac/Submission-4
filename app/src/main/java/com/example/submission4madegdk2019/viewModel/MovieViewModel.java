@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.submission4madegdk2019.BuildConfig;
 import com.example.submission4madegdk2019.model.Movies;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieViewModel extends ViewModel {
-    private static final String KEY = "8bb4ed2c9577dbd754635bae6c2ca0d9";
+    private static final String KEY = BuildConfig.API_KEY;
     private MutableLiveData<ArrayList<Movies>> listMovies = new MutableLiveData<>();
 
     public void setMovies(final String movies){
@@ -33,6 +34,8 @@ public class MovieViewModel extends ViewModel {
                 try {
                     String resultMovie = new String(responseBody);
                     JSONObject movieObj = new JSONObject(resultMovie);
+
+
                     JSONArray list = movieObj.getJSONArray("results");
                     for (int i = 0 ; i < list.length(); i++){
                         JSONObject movie = list.getJSONObject(i);

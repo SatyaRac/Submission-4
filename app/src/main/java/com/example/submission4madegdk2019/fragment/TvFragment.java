@@ -85,9 +85,9 @@ public class TvFragment extends Fragment {
 
     private Observer<ArrayList<TvShow>> getTv = new Observer<ArrayList<TvShow>>() {
         @Override
-        public void onChanged(ArrayList<TvShow> movies) {
-            if (movies != null){
-                tvAdapter.setData(tv);
+        public void onChanged(ArrayList<TvShow> tv) {
+            if (tv != null){
+                tvAdapter.setDataTv(tv);
                 showLoading(true);
             }
         }

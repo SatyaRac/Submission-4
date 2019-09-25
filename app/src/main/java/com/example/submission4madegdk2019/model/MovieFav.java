@@ -3,6 +3,8 @@ package com.example.submission4madegdk2019.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 public class MovieFav implements Parcelable {
 
     private int id;
@@ -15,6 +17,7 @@ public class MovieFav implements Parcelable {
     public MovieFav() {
 
     }
+
 
 
     public int getId() {
@@ -101,4 +104,29 @@ public class MovieFav implements Parcelable {
             return new MovieFav[size];
         }
     };
+
+    MovieFav(JSONObject object){
+        try {
+
+            int movieId = object.getInt("id");
+            String postrtPath = object.getString("poster_path");
+            String title = object.getString("title");
+            String voteAverage = object.getString("vote_average");
+            String releaseDate = object.getString("release_date");
+            String overview = object.getString("overview");
+
+            this.id = movieId;
+            this.poster_path = postrtPath;
+            this.title = title;
+            this.vote_average = voteAverage;
+            this.release_date = releaseDate;
+            this.overview = overview;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
