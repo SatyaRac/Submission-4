@@ -19,6 +19,7 @@ import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TITLE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.VOTE_AVERAGE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TABLE_MOVIE;
+import static cz.msebera.android.httpclient.HttpHeaders.FROM;
 
 public class MovieFavHelper {
     private static final String DATABASE_TABLE = TABLE_MOVIE;
@@ -93,16 +94,8 @@ public class MovieFavHelper {
         return sqLiteDatabase.insert(DATABASE_TABLE, null, args);
 
     }
-    public int isExist(MovieFav id){
 
-        String query = " SELECT * FROM " + DATABASE_TABLE + " WHERE " + _ID + "=" + id;
 
-        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
-    }
 
     public int deleteMovie(int id) {
         return sqLiteDatabase.delete(TABLE_MOVIE, _ID + " = '" + id + "'", null);

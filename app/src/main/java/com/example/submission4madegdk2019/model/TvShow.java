@@ -16,9 +16,6 @@ public class TvShow implements Parcelable {
     private Double voteAverage;
 
 
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;

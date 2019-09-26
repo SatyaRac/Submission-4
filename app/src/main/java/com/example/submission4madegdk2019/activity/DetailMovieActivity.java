@@ -31,7 +31,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     private ProgressBar progressBar;
 
-    public TextView tv_title, tv_release, tv_vote_average, tv_overview, tv_url_image;
+    public TextView  tv_title, tv_release, tv_vote_average, tv_overview, tv_url_image;
     Button btnSaveMov;
 
     ImageView imageMov;
@@ -44,7 +44,8 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     private int position;
 
     private MovieFavHelper movieFavHelper;
-    private boolean isEdit = false;
+    private boolean isInsert = false;
+
     public static final int RESULT_ADD = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAV);
         if (movieFav != null){
             position = getIntent().getIntExtra(SEND_POSITION,0);
-            isEdit  = true;
+            isInsert  = true;
             btnSaveMov.setVisibility(View.GONE);
         } else {
             movieFav = new MovieFav();
@@ -80,6 +81,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
             String url_picMov = "https://image.tmdb.org/t/p/w500" + movies.getPoster_path();
             String vote_average = Double.toString(movies.getVote_average());
+
 
             tv_vote_average.setText(vote_average);
             tv_title.setText(movies.getTitle());
@@ -150,7 +152,6 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if (view.getId() == R.id.btn_love) {
 
-
             String titles       = tv_title.getText().toString().trim();
             String overview    = tv_overview.getText().toString().trim();
             String release_date = tv_release.getText().toString().trim();
@@ -168,26 +169,24 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             intent.putExtra(SEND_MOVIE_FAV, movieFav);
             intent.putExtra(SEND_POSITION, position);
 
-            if (!isEdit) {
+            if (!isInsert) {
 
-                long result = movieFavHelper.insertMovie(movieFav);
+                 long result = movieFavHelper.insertMovie(movieFav);
 
                 if (result > 0) {
-                    movieFav.setId((int) result);
+
                     setResult(RESULT_ADD, intent);
                     Toast.makeText(DetailMovieActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
+
                     Toast.makeText(DetailMovieActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
                     finish();
                 }
+
             }
-            if (isEdit){
-                long dat = movieFavHelper.isExist(movieFav);
-                if (dat > 0 ){
-                    Toast.makeText(DetailMovieActivity.this, "Sudah di tambahkan", Toast.LENGTH_SHORT).show();
-                }
-            }
+
+
 
         }
     }

@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class MovieFav implements Parcelable {
 
-    private int id;
+    private int id_movie;
     private String title;
     private String poster_path;
     private String release_date;
@@ -20,12 +20,11 @@ public class MovieFav implements Parcelable {
 
 
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
-        this.id = id;
+        this.id_movie = id;
+    }
+    public int getId(){
+        return  id_movie;
     }
 
     public String getTitle() {
@@ -76,7 +75,7 @@ public class MovieFav implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeInt(this.id_movie);
         dest.writeString(this.title);
         dest.writeString(this.poster_path);
         dest.writeString(this.release_date);
@@ -85,7 +84,7 @@ public class MovieFav implements Parcelable {
     }
 
     public MovieFav(Parcel in) {
-        this.id = in.readInt();
+        this.id_movie = in.readInt();
         this.title = in.readString();
         this.poster_path = in.readString();
         this.release_date = in.readString();
@@ -115,7 +114,7 @@ public class MovieFav implements Parcelable {
             String releaseDate = object.getString("release_date");
             String overview = object.getString("overview");
 
-            this.id = movieId;
+            this.id_movie = movieId;
             this.poster_path = postrtPath;
             this.title = title;
             this.vote_average = voteAverage;

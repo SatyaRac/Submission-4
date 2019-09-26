@@ -16,9 +16,6 @@ public class Movies implements Parcelable {
     private Double vote_average;
 
 
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -117,4 +114,6 @@ public class Movies implements Parcelable {
             e.printStackTrace();
         }
     }
+
+
 }

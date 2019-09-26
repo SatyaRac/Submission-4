@@ -21,8 +21,7 @@ public class DbHelper  extends SQLiteOpenHelper {
             " %s TEXT NOT NULL)",
 
             TABLE_MOVIE,
-            DbContract.MovieListFavorite._ID,
-            /*DbContract.MovieListFavorite.ID_MOVIE,*/
+            DbContract.MovieListFavorite.ID_MOVIE,
             DbContract.MovieListFavorite.TITLE,
             DbContract.MovieListFavorite.OVERVIEW,
             DbContract.MovieListFavorite.RELEASE_DATE,
@@ -40,7 +39,7 @@ public class DbHelper  extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL)",
 
             TABLE_TV_SHOW,
-            DbContract.TvListFavorite._ID,
+            DbContract.TvListFavorite.ID_TV,
             /*DbContract.TvListFavorite.ID_TV,*/
             DbContract.TvListFavorite.TV_NAME,
             DbContract.TvListFavorite.TV_OVERVIEW,

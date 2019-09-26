@@ -24,6 +24,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
     public static final String SEND_MOVIE_FAVORITE = "send_movie_favorite";
     public static final String SEND_POSITION = "send_position";
 
+    TextView tvId;
     TextView tvTitleMovFav;
     TextView tvReleaseDateMovFav;
     TextView tvVoteAverageMovFav;
