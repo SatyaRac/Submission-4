@@ -12,6 +12,7 @@ import com.example.submission4madegdk2019.model.TvFav;
 import java.util.ArrayList;
 
 import static android.provider.BaseColumns._ID;
+import static com.example.submission4madegdk2019.db.DbContract.TvListFavorite.ID_TV;
 import static com.example.submission4madegdk2019.db.DbContract.TvListFavorite.TABLE_TV_SHOW;
 import static com.example.submission4madegdk2019.db.DbContract.TvListFavorite.TV_FIRST_AIR_DATE;
 import static com.example.submission4madegdk2019.db.DbContract.TvListFavorite.TV_NAME;
@@ -54,14 +55,14 @@ public class TvFavHelper {
                 null,
                 null,
                 null,
-                _ID + " ASC",
+                ID_TV + " ASC",
                 null);
         cursor.moveToFirst();
         TvFav tvFav;
         if (cursor.getCount() > 0) {
             do {
                 tvFav = new TvFav();
-                tvFav.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                tvFav.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ID_TV)));
                 tvFav.setTv_name(cursor.getString(cursor.getColumnIndexOrThrow(TV_NAME)));
                 tvFav.setTv_overview(cursor.getString(cursor.getColumnIndexOrThrow(TV_OVERVIEW)));
                 tvFav.setTv_first_air_date(cursor.getString(cursor.getColumnIndexOrThrow(TV_FIRST_AIR_DATE)));
@@ -79,7 +80,7 @@ public class TvFavHelper {
 
     public long insertTv(TvFav tvFav) {
         ContentValues args = new ContentValues();
-        /*args.put(_ID, tvFav.getId());*/
+        args.put(ID_TV, tvFav.getId());
         args.put(TV_NAME, tvFav.getTv_name());
         args.put(TV_OVERVIEW, tvFav.getTv_overview());
         args.put(TV_FIRST_AIR_DATE, tvFav.getTv_first_air_date());
@@ -88,7 +89,7 @@ public class TvFavHelper {
         return sqLiteDatabase.insert(DATABASE_TABLE, null, args);
     }
     public int deleteTv(int id) {
-        return sqLiteDatabase.delete(TABLE_TV_SHOW, _ID + " = '" + id + "'", null);
+        return sqLiteDatabase.delete(TABLE_TV_SHOW, ID_TV + " = '" + id + "'", null);
     }
 
 

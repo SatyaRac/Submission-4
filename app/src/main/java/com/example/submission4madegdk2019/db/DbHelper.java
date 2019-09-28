@@ -12,7 +12,7 @@ public class DbHelper  extends SQLiteOpenHelper {
     private static  final String DATABASE_NAME = "movielist";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_TABLE_MOVIE_FAV = String.format("CREATE TABLE %s"
-            + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+            + " (%s INTEGER PRIMARY KEY AUTOINCREMENT ," +
           /*  " %s INTEGER NOT NULL," +*/
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL," +
@@ -30,7 +30,7 @@ public class DbHelper  extends SQLiteOpenHelper {
     );
 
     private static final String SQL_CREATE_TABLE_TV_SHOW_FAV = String.format("CREATE TABLE %s"
-                    + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    + " (%s INTEGER NOT NULL," +
                     /*" %s INTEGER NOT NULL," +*/
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +

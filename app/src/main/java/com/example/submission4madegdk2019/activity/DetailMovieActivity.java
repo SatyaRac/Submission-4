@@ -25,6 +25,8 @@ import com.example.submission4madegdk2019.model.MovieFav;
 import com.example.submission4madegdk2019.model.Movies;
 import com.example.submission4madegdk2019.viewModel.MovieViewModel;
 
+import java.util.ArrayList;
+
 public class DetailMovieActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String SEND_MOVIE = "send_movie";
@@ -64,6 +66,8 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         btnSaveMov = findViewById(R.id.btn_love);
 
         btnSaveMov.setOnClickListener(this);
+
+
 
         movieFavHelper = MovieFavHelper.getInstance(getApplicationContext());
         movieFavHelper.open();
@@ -176,11 +180,11 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
                 if (result > 0) {
 
                     setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailMovieActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
 
-                    Toast.makeText(DetailMovieActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
@@ -190,4 +194,6 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
         }
     }
+
+
 }

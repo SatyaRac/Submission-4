@@ -11,7 +11,7 @@ import com.example.submission4madegdk2019.model.MovieFav;
 
 import java.util.ArrayList;
 
-import static android.provider.BaseColumns._ID;
+/*import static android.provider.BaseColumns._ID;*/
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.ID_MOVIE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.OVERVIEW;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.POSTER_PATH;
@@ -19,7 +19,6 @@ import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TITLE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.VOTE_AVERAGE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TABLE_MOVIE;
-import static cz.msebera.android.httpclient.HttpHeaders.FROM;
 
 public class MovieFavHelper {
     private static final String DATABASE_TABLE = TABLE_MOVIE;
@@ -60,14 +59,14 @@ public class MovieFavHelper {
                 null,
                 null,
                 null,
-                _ID + " ASC",
+                ID_MOVIE + " ASC",
                 null);
         cursor.moveToFirst();
         MovieFav movieFavorite;
         if (cursor.getCount() > 0) {
             do {
                 movieFavorite = new MovieFav();
-                movieFavorite.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                movieFavorite.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ID_MOVIE)));
                 movieFavorite.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
                 movieFavorite.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
                 movieFavorite.setRelease_date(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
@@ -85,7 +84,7 @@ public class MovieFavHelper {
 
     public long insertMovie(MovieFav movieFavorite) {
         ContentValues args = new ContentValues();
-        args.put(_ID, movieFavorite.getId());
+        args.put(ID_MOVIE, movieFavorite.getId());
         args.put(TITLE, movieFavorite.getTitle());
         args.put(OVERVIEW, movieFavorite.getOverview());
         args.put(RELEASE_DATE, movieFavorite.getRelease_date());
@@ -93,12 +92,14 @@ public class MovieFavHelper {
         args.put(POSTER_PATH, movieFavorite.getPoster_path());
         return sqLiteDatabase.insert(DATABASE_TABLE, null, args);
 
+
+
     }
 
 
 
     public int deleteMovie(int id) {
-        return sqLiteDatabase.delete(TABLE_MOVIE, _ID + " = '" + id + "'", null);
+        return sqLiteDatabase.delete(TABLE_MOVIE, ID_MOVIE + " = '" + id + "'", null);
     }
 
 
