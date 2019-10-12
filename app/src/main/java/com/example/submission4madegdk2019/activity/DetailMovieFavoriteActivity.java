@@ -1,7 +1,5 @@
 package com.example.submission4madegdk2019.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,17 +12,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.submission4madegdk2019.R;
 import com.example.submission4madegdk2019.db.MovieFavHelper;
 import com.example.submission4madegdk2019.model.MovieFav;
 
-public class DetailMovieFavoriteActivity extends AppCompatActivity implements View.OnClickListener{
+public class DetailMovieFavoriteActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String SEND_MOVIE_FAVORITE = "send_movie_favorite";
     public static final String SEND_POSITION = "send_position";
 
-    TextView tvId;
     TextView tvTitleMovFav;
     TextView tvReleaseDateMovFav;
     TextView tvVoteAverageMovFav;
@@ -81,7 +80,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                     .override(50, 75)
                     .into(imageView);
 
-        }else {
+        } else {
             progressBar.setVisibility(View.VISIBLE);
             final Handler handler = new Handler();
 
@@ -89,7 +88,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(30);
                     } catch (Exception e) {
                     }
                     handler.post(new Runnable() {
@@ -101,7 +100,6 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                             tvReleaseDateMovFav.setText(movieFav.getRelease_date());
                             tvVoteAverageMovFav.setText(movieFav.getVote_average());
                             tvOverviewMovFav.setText(movieFav.getOverview());
-
                             Glide.with(DetailMovieFavoriteActivity.this)
                                     .load(movieFav.getPoster_path())
                                     .placeholder(R.color.primaryColor)
@@ -127,7 +125,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
 
         if (!isDialogClose) {
             dialogMessage = getString(R.string.notify_ques_delete);
-            dialogTitle   = getString(R.string.notify_delete_mov);
+            dialogTitle = getString(R.string.notify_delete_mov);
 
             alertDialogBuilder.setTitle(dialogTitle);
             alertDialogBuilder
@@ -137,9 +135,9 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
                         public void onClick(DialogInterface dialog, int id) {
                             long result = movieFavHelper.deleteMovie(movieFav.getId());
                             if (result > 0) {
-                                Intent intent = new Intent();
+                                Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                 intent.putExtra(SEND_POSITION, position);
-                                setResult(RESULT_DELETE, intent);
+                                startActivity(intent);
                                 finish();
                             } else {
                                 Toast.makeText(DetailMovieFavoriteActivity.this, getString(R.string.notify_failed_delete_data), Toast.LENGTH_SHORT).show();
@@ -159,10 +157,9 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
     }
-
 
 
     @Override
@@ -177,7 +174,5 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity implements Vi
     public void onBackPressed() {
         showAlertDialog(ALERT_DIALOG_CLOSE);
     }
-
-
 }
 

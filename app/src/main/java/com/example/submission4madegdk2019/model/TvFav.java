@@ -23,6 +23,10 @@ public class TvFav extends MovieFav implements Parcelable {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getTv_name() {
         return tv_name;
     }

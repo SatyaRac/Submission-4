@@ -4,11 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/list_tv"
     android:layout_margin="16dp">
 
     <RelativeLayout
-        android:id="@+id/rl_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp">

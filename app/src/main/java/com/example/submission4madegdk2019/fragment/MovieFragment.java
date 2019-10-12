@@ -1,6 +1,7 @@
 package com.example.submission4madegdk2019.fragment;
 
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class MovieFragment extends Fragment {
     private MoviesAdapter moviesAdapter;
     private ArrayList<Movies> movies;
     private FloatingActionButton fabMov;
+
 
 
 

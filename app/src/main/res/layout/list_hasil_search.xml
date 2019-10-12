@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -11,7 +12,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/iv_poster_tv"
+            android:id="@+id/iv_poster"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_marginBottom="4dp"
@@ -19,66 +20,66 @@
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/tv_name_tv"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:layout_marginBottom="8dp"
-            android:layout_toEndOf="@+id/iv_poster_tv"
+            android:layout_toEndOf="@+id/iv_poster"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_poster_tv"
+            android:layout_below="@id/iv_poster"
             android:layout_marginStart="13dp"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginTop="-142dp"
             android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_toEndOf="@id/iv_poster_tv"
+            android:layout_toEndOf="@id/iv_poster"
             android:ellipsize="end"
             android:maxLines="5"
-            android:text="@string/first_air_date"/>
+            android:text="@string/release_date"/>
 
         <TextView
-            android:id="@+id/tv_first_air_date_tv"
+            android:id="@+id/tv_release"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/tv_name_tv"
+            android:layout_alignBottom="@id/tv_title"
             android:layout_marginStart="13dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-82dp"
-            android:layout_toEndOf="@id/iv_poster_tv"
+            android:layout_toEndOf="@id/iv_poster"
             android:ellipsize="end"
             android:maxLines="5" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/tv_name_tv"
+            android:layout_alignBottom="@id/tv_title"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-117dp"
             android:text="@string/overview"
-            android:layout_toEndOf="@id/iv_poster_tv"
+            android:layout_toEndOf="@id/iv_poster"
             android:ellipsize="end"
             android:maxLines="5" />
 
         <TextView
-            android:id="@+id/tv_overview_tv"
+            android:id="@+id/tv_overview"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_alignBottom="@id/tv_name_tv"
+            android:layout_alignBottom="@id/tv_title"
             android:layout_marginStart="13dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="-160dp"
-            android:layout_toEndOf="@id/iv_poster_tv"
+            android:layout_toEndOf="@id/iv_poster"
             android:ellipsize="end"
             android:maxLines="5" />
 
@@ -91,7 +92,7 @@
         android:layout_marginTop="210dp">
 
         <Button
-            android:id="@+id/btn_detail_tv_fav"
+            android:id="@+id/btn_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"

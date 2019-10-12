@@ -1,14 +1,14 @@
 package com.example.submission4madegdk2019.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.submission4madegdk2019.LoadMovFavCallbac;
 import com.example.submission4madegdk2019.R;
@@ -29,6 +29,8 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
     private RecyclerView rvMovFav;
     private ProgressBar progressBar;
     private MoviesFavAdapter moviesFavAdapter;
+    private ArrayList movieFavList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,11 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
         rvMovFav.setHasFixedSize(true);
 
         moviesFavAdapter = new MoviesFavAdapter(this);
+
+        moviesFavAdapter.notifyDataSetChanged();
         progressBar = findViewById(R.id.progress_Bar);
         rvMovFav.setAdapter(moviesFavAdapter);
+
 
         if (savedInstanceState == null) {
             new LoadMovAsync(movieFavHelper, this).execute();
@@ -55,6 +60,7 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
             }
         }
     }
+
 
 
     @Override
@@ -117,6 +123,8 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
         super.onDestroy();
         movieFavHelper.close();
     }
+
+
     @Override
     protected  void onActivityResult(int reqcode, int rescode, Intent data){
         super.onActivityResult(reqcode,rescode, data);
@@ -133,5 +141,6 @@ public class ListFavMovActivity extends AppCompatActivity implements View.OnClic
     private void showSnackbarMessage(String message){
         Snackbar.make(rvMovFav, message, Snackbar.LENGTH_SHORT).show();
     }
+
 
 }

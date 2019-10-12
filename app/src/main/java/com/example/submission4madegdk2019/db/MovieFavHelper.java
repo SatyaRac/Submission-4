@@ -6,19 +6,20 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.submission4madegdk2019.model.MovieFav;
 
 import java.util.ArrayList;
 
-/*import static android.provider.BaseColumns._ID;*/
+import static android.provider.BaseColumns._ID;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.ID_MOVIE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.OVERVIEW;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.POSTER_PATH;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.RELEASE_DATE;
+import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TABLE_MOVIE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TITLE;
 import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.VOTE_AVERAGE;
-import static com.example.submission4madegdk2019.db.DbContract.MovieListFavorite.TABLE_MOVIE;
 
 public class MovieFavHelper {
     private static final String DATABASE_TABLE = TABLE_MOVIE;
@@ -59,14 +60,13 @@ public class MovieFavHelper {
                 null,
                 null,
                 null,
-                ID_MOVIE + " ASC",
-                null);
+                _ID + " ASC");
         cursor.moveToFirst();
         MovieFav movieFavorite;
         if (cursor.getCount() > 0) {
             do {
                 movieFavorite = new MovieFav();
-                movieFavorite.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ID_MOVIE)));
+                movieFavorite.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 movieFavorite.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
                 movieFavorite.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
                 movieFavorite.setRelease_date(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
@@ -83,6 +83,7 @@ public class MovieFavHelper {
     }
 
     public long insertMovie(MovieFav movieFavorite) {
+
         ContentValues args = new ContentValues();
         args.put(ID_MOVIE, movieFavorite.getId());
         args.put(TITLE, movieFavorite.getTitle());
@@ -90,19 +91,25 @@ public class MovieFavHelper {
         args.put(RELEASE_DATE, movieFavorite.getRelease_date());
         args.put(VOTE_AVERAGE, movieFavorite.getVote_average());
         args.put(POSTER_PATH, movieFavorite.getPoster_path());
+        Log.d("INSERT", args.toString());
         return sqLiteDatabase.insert(DATABASE_TABLE, null, args);
-
-
-
     }
 
+    public boolean isExist(MovieFav movie) {
+        sqLiteDatabase = dbHelper.getReadableDatabase();
+        String QUERY = "SELECT * FROM " + TABLE_MOVIE + " WHERE " + _ID + " = " + movie.getId();
 
+        Cursor cursor = sqLiteDatabase.rawQuery(QUERY, null);
+        /*if (cursor.getCount() <= 0) {
+            cursor.close();
+            return false;
+        }*/
+        cursor.close();
+        return true;
+    }
 
     public int deleteMovie(int id) {
-        return sqLiteDatabase.delete(TABLE_MOVIE, ID_MOVIE + " = '" + id + "'", null);
+        Log.d("Delete", String.valueOf(id));
+        return sqLiteDatabase.delete(TABLE_MOVIE, _ID + " = '" + id + "'", null);
     }
-
-
-
-
 }

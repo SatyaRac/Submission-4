@@ -14,6 +14,7 @@ public class MovieFav implements Parcelable {
     private String overview;
     private String vote_average;
 
+
     public MovieFav() {
 
     }

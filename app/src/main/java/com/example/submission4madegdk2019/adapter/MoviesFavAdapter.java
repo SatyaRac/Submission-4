@@ -19,13 +19,14 @@ import com.example.submission4madegdk2019.activity.DetailMovieFavoriteActivity;
 import com.example.submission4madegdk2019.model.MovieFav;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.MovieViewHolder> {
 
     private ArrayList<MovieFav> movieFavList = new ArrayList<>();
     private final Activity activity;
     private Context context;
+
+    MoviesFavAdapter moviesFavAdapter;
 
     public MoviesFavAdapter(Activity activity){
         this.activity = activity;
@@ -36,11 +37,6 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
         return movieFavList;
     }
 
-    public void setData(List<MovieFav> items){
-        movieFavList.clear();
-        movieFavList.addAll(items);
-        notifyDataSetChanged();
-    }
 
     @NonNull
     @Override
@@ -59,6 +55,7 @@ public class MoviesFavAdapter extends RecyclerView.Adapter<MoviesFavAdapter.Movi
     public int getItemCount() {
         return movieFavList.size();
     }
+
 
     class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitleFavMov,tvReleaseFavMov;

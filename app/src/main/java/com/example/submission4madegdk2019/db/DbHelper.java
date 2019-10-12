@@ -12,15 +12,21 @@ public class DbHelper  extends SQLiteOpenHelper {
     private static  final String DATABASE_NAME = "movielist";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_TABLE_MOVIE_FAV = String.format("CREATE TABLE %s"
-            + " (%s INTEGER PRIMARY KEY AUTOINCREMENT ," +
-          /*  " %s INTEGER NOT NULL," +*/
+                    + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    " %s INTEGER  NOT NULL," +
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL," +
-            " %s TEXT NOT NULL)",
+                    " %s TEXT NOT NULL" +
+                    ",UNIQUE ("
+                    + DbContract.MovieListFavorite.TITLE +
+                    "," + DbContract.MovieListFavorite.RELEASE_DATE
+                    + ")" +
+                    ")",
 
             TABLE_MOVIE,
+            DbContract.MovieListFavorite._ID,
             DbContract.MovieListFavorite.ID_MOVIE,
             DbContract.MovieListFavorite.TITLE,
             DbContract.MovieListFavorite.OVERVIEW,
@@ -30,17 +36,22 @@ public class DbHelper  extends SQLiteOpenHelper {
     );
 
     private static final String SQL_CREATE_TABLE_TV_SHOW_FAV = String.format("CREATE TABLE %s"
-                    + " (%s INTEGER NOT NULL," +
-                    /*" %s INTEGER NOT NULL," +*/
+                    + " (%s INTEGER  PRIMARY KEY AUTOINCREMENT," +
+                    " %s INTEGER NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
-                    " %s TEXT NOT NULL)",
+                    " %s TEXT NOT NULL" +
+                    ", UNIQUE ("
+                    + DbContract.TvListFavorite.TV_NAME +
+                    "," + DbContract.TvListFavorite.TV_FIRST_AIR_DATE
+                    + ")" +
+                    ")",
 
             TABLE_TV_SHOW,
+            DbContract.TvListFavorite._ID,
             DbContract.TvListFavorite.ID_TV,
-            /*DbContract.TvListFavorite.ID_TV,*/
             DbContract.TvListFavorite.TV_NAME,
             DbContract.TvListFavorite.TV_OVERVIEW,
             DbContract.TvListFavorite.TV_FIRST_AIR_DATE,
@@ -65,4 +76,5 @@ public class DbHelper  extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TV_SHOW);
         onCreate(db);
     }
+
 }

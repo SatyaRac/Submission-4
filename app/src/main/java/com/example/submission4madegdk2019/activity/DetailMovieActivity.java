@@ -1,10 +1,6 @@
 package com.example.submission4madegdk2019.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,18 +10,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.example.submission4madegdk2019.R;
 import com.example.submission4madegdk2019.db.MovieFavHelper;
 import com.example.submission4madegdk2019.model.MovieFav;
 import com.example.submission4madegdk2019.model.Movies;
 import com.example.submission4madegdk2019.viewModel.MovieViewModel;
 
-import java.util.ArrayList;
+
 
 public class DetailMovieActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,7 +35,6 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     public static final String SEND_MOVIE_FAV = "send_movie_fav";
     public static final String SEND_POSITION = "send_position";
-    private MovieViewModel movieViewModel;
     private MovieFav movieFav;
     private int position;
 
@@ -49,6 +42,8 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     private boolean isInsert = false;
 
     public static final int RESULT_ADD = 101;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +62,6 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
         btnSaveMov.setOnClickListener(this);
 
-
-
         movieFavHelper = MovieFavHelper.getInstance(getApplicationContext());
         movieFavHelper.open();
         movieFav = getIntent().getParcelableExtra(SEND_MOVIE_FAV);
@@ -78,47 +71,15 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             btnSaveMov.setVisibility(View.GONE);
         } else {
             movieFav = new MovieFav();
-        }
-        if (savedInstanceState != null){
-            progressBar.setVisibility(View.INVISIBLE);
-            Movies movies = getIntent().getParcelableExtra(SEND_MOVIE);
-
-            String url_picMov = "https://image.tmdb.org/t/p/w500" + movies.getPoster_path();
-            String vote_average = Double.toString(movies.getVote_average());
 
 
-            tv_vote_average.setText(vote_average);
-            tv_title.setText(movies.getTitle());
-            tv_release.setText(movies.getRelease_date());
-            tv_overview.setText(movies.getOverview());
-            tv_url_image.setText(url_picMov);
-
-            Glide.with(DetailMovieActivity.this)
-                    .load(url_picMov)
-                    .placeholder(R.color.primaryColor)
-                    .override(50,75)
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            progressBar.setVisibility(View.VISIBLE);
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            progressBar.setVisibility(View.GONE);
-                            return false;
-                        }
-                    })
-                    .into(imageMov);
-        }else{
             final Handler handler = new Handler();
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try{
-                        Thread.sleep(3000);
+                        Thread.sleep(30);
                     } catch (Exception e){
                     }
                     handler.post(new Runnable() {
@@ -148,16 +109,13 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         }
 
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+
 
     public void onClick(View view) {
         if (view.getId() == R.id.btn_love) {
 
-            String titles       = tv_title.getText().toString().trim();
-            String overview    = tv_overview.getText().toString().trim();
+            String titles = tv_title.getText().toString().trim();
+            String overview = tv_overview.getText().toString().trim();
             String release_date = tv_release.getText().toString().trim();
             String vote_average = tv_vote_average.getText().toString().trim();
 
@@ -173,27 +131,24 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             intent.putExtra(SEND_MOVIE_FAV, movieFav);
             intent.putExtra(SEND_POSITION, position);
 
+
             if (!isInsert) {
 
-                 long result = movieFavHelper.insertMovie(movieFav);
+                long result = movieFavHelper.insertMovie(movieFav);
 
                 if (result > 0) {
-
+                    movieFav.setId((int) result);
                     setResult(RESULT_ADD, intent);
                     Toast.makeText(DetailMovieActivity.this, getString(R.string.success_add), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-
                     Toast.makeText(DetailMovieActivity.this, getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
+
             }
-
-
-
         }
     }
-
 
 }

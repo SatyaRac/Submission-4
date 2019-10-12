@@ -1,7 +1,5 @@
 package com.example.submission4madegdk2019.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.submission4madegdk2019.R;
@@ -87,7 +87,7 @@ public class DetailTvFavoriteActivity extends AppCompatActivity implements View.
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(30);
                     } catch (Exception e){
 
                     }handler.post(new Runnable() {
@@ -131,9 +131,9 @@ public class DetailTvFavoriteActivity extends AppCompatActivity implements View.
                         public void onClick(DialogInterface dialog, int id) {
                             long result = tvFavHelper.deleteTv(tvFav.getId());
                             if (result > 0) {
-                                Intent intent = new Intent();
+                                Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                 intent.putExtra(SEND_POSITION, position);
-                                setResult(RESULT_DELETE, intent);
+                                startActivity(intent);
                                 finish();
                             } else {
                                 Toast.makeText(DetailTvFavoriteActivity.this, getString(R.string.notify_failed_delete_data), Toast.LENGTH_SHORT).show();
@@ -153,6 +153,12 @@ public class DetailTvFavoriteActivity extends AppCompatActivity implements View.
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+
+    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_delete) {
             showAlertDialog(ALERT_DIALOG_DELETE);
@@ -160,16 +166,9 @@ public class DetailTvFavoriteActivity extends AppCompatActivity implements View.
     }
 
     @Override
-    protected void onDestroy(){
-        super.onDestroy();
-    }
-
-
-    @Override
     public void onBackPressed() {
         showAlertDialog(ALERT_DIALOG_CLOSE);
     }
-
 
 }
 

@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface LoadMovFavCallbac {
     void preExecute();
     void posExecute(ArrayList<MovieFav> movieFav);
+
 }

@@ -55,14 +55,14 @@ public class TvFavHelper {
                 null,
                 null,
                 null,
-                ID_TV + " ASC",
+                _ID + " ASC",
                 null);
         cursor.moveToFirst();
         TvFav tvFav;
         if (cursor.getCount() > 0) {
             do {
                 tvFav = new TvFav();
-                tvFav.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ID_TV)));
+                tvFav.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 tvFav.setTv_name(cursor.getString(cursor.getColumnIndexOrThrow(TV_NAME)));
                 tvFav.setTv_overview(cursor.getString(cursor.getColumnIndexOrThrow(TV_OVERVIEW)));
                 tvFav.setTv_first_air_date(cursor.getString(cursor.getColumnIndexOrThrow(TV_FIRST_AIR_DATE)));
@@ -89,7 +89,7 @@ public class TvFavHelper {
         return sqLiteDatabase.insert(DATABASE_TABLE, null, args);
     }
     public int deleteTv(int id) {
-        return sqLiteDatabase.delete(TABLE_TV_SHOW, ID_TV + " = '" + id + "'", null);
+        return sqLiteDatabase.delete(TABLE_TV_SHOW, _ID + " = '" + id + "'", null);
     }
 
 

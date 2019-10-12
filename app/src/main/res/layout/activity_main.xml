@@ -25,13 +25,11 @@
             app:tabTextColor="@color/primaryLightColor">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tb_move"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tb_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
